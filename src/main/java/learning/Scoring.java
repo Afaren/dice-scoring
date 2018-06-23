@@ -1,7 +1,21 @@
 package learning;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 public class Scoring {
-    public static int score(Integer ...dices) {
+    public static int score(Integer... dices) {
+        Map<Integer, List<Integer>> groups = Arrays.stream(dices)
+                                                   .collect(Collectors.groupingBy(e -> e));
+        return groups.entrySet()
+                     .stream()
+                     .mapToInt(x -> calculate(x.getValue().stream().toArray(Integer[]::new)))
+                     .sum();
+    }
+
+    private static int calculate(Integer... dices) {
         if (dices.length == 0) {
             return 0;
         }
