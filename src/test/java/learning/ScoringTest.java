@@ -55,4 +55,14 @@ class ScoringTest {
         Assertions.assertEquals(1150, score(1, 1, 1, 5, 1));
     }
 
+    @Test
+    void test_score_of_length_more_5() {
+        Assertions.assertEquals(2100 ,score(1, 1, 1, 1, 1, 1, 1));
+        Assertions.assertEquals(1000 ,score(5, 5, 5, 5, 5, 5));
+        Assertions.assertEquals(600 ,score(3, 3, 3, 3, 3, 3));
+        Assertions.assertEquals(900 ,score(3, 3, 3, 3, 3, 3, 3, 3, 3));
+        Assertions.assertEquals(1500 ,score(3, 3, 3, 2, 2, 2, 1, 1, 1));
+
+    }
+
 }

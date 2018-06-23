@@ -2,7 +2,7 @@
 
 This example is inspired by [[https://github.com/neall/ruby_koans][ruby_koans]].
 
-Greed is a dice game where you roll up to five dice to accumulate
+Greed is a dice game where you roll up to a mount of dice to accumulate
 points.  The following "score" function will be used calculate the
 score of a single roll of the dice.
 
@@ -25,6 +25,11 @@ Examples:
     - score([2, 3, 4, 6, 2]) => 0 points
     - score([3, 4, 5, 3, 3]) => 350 points
     - score([1, 5, 1, 2, 4]) => 250 points
+    - score([1, 1, 1, 1, 1, 1, 1]) => 2100 points
+    - score([5, 5, 5, 5, 5, 5]) => 1000 points
+    - score([3, 3, 3, 3, 3, 3]) => 600 points
+    - score([3, 3, 3, 3, 3, 3, 3, 3, 3]) => 900 points
+    - score([3, 3, 3, 2, 2, 2, 1, 1, 1]) => 1500 points
 
 More scoring examples are given in the tests below:
 
