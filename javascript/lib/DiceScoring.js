@@ -1,20 +1,5 @@
 const _ = require('lodash');
-
-class Rule {
-    constructor(singleTime, threeTimes) {
-        this.singleTimeScore = singleTime;
-        this.threeTimesScore = threeTimes;
-    }
-
-    calculate(number, count) {
-        if (count < 3) {
-            return count * this.singleTimeScore;
-        } else {
-            return this.threeTimesScore(number) + this.calculate(number, count - 3);
-        }
-    }
-
-}
+const Rule = require('./Rule');
 
 const ruleOf1 = new Rule(100, number => 1000);
 const ruleOf5 = new Rule(50, number => 500);
