@@ -1,10 +1,10 @@
 function scoring(...args) {
-  const numObj = args.reduce((acc, cur) => {
+  const numberCountMap = args.reduce((acc, cur) => {
     acc[cur] ? acc[cur]++ : acc[cur] = 1;
     return acc;
   }, {});
 
-  const result = calculateScore(numObj);
+  const result = calculateScore(numberCountMap);
 
   return Object.values(result)
                .reduce((acc, cur) => acc + cur, 0);
