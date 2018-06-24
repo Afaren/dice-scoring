@@ -1,12 +1,8 @@
 function scoring(...args) {
-  let numObj = {};
-  args.forEach(num => {
-    if (numObj[num]) {
-      numObj[num] += 1;
-    } else {
-      numObj[num] = 1;
-    }
-  });
+  const numObj = args.reduce((acc, cur) => {
+    acc[cur] ? acc[cur]++ : acc[cur] = 1;
+    return acc;
+  }, {});
 
   const result = calculateScore(numObj);
 
