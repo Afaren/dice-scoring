@@ -24,16 +24,16 @@ function scoring(...args) {
     const result = calculateScore(numberCountMap);
 
     return _.values(result)
-        .reduce((acc, cur) => acc + cur, 0);
+            .reduce((acc, cur) => acc + cur, 0);
 }
 
 
 function calculateScore(numberCountMap) {
     const result = {};
     _.entries(numberCountMap)
-        .forEach(([number, count]) => {
-            result[number] = calculateTimes(number, count);
-        });
+     .forEach(([number, count]) => {
+         result[number] = calculateTimes(number, count);
+     });
     return result;
 }
 
