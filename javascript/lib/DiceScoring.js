@@ -5,13 +5,22 @@ class Rule {
         this.singleTimeScore = singleTime;
         this.threeTimesScore = threeTimes;
     }
+
+    calculate(number, count) {
+        if (count < 3) {
+            return count * this.singleTimeScore;
+        } else {
+            return this.threeTimesScore(number) + this.calculate(number, count - 3);
+        }
+    }
+
 }
 
 const ruleOf1 = new Rule(100, number => 1000);
 const ruleOf5 = new Rule(50, number => 500);
 const ruleOfOther = new Rule(0, number => number * 100);
 
-const scoringRules = {
+const ScoringRules = {
     '1': ruleOf1,
     '5': ruleOf5,
     '2': ruleOfOther,
@@ -20,31 +29,11 @@ const scoringRules = {
     '6': ruleOfOther,
 };
 
-class ScoreCalculator {
-    constructor(rules) {
-        this.rules = rules;
-    }
-
-    calculate(number, count) {
-        const rule = this.rules[number];
-        if (count < 3) {
-            return count * rule.singleTimeScore;
-        } else {
-            return rule.threeTimesScore(number) + this.calculate(number, count - 3);
-        }
-    }
-
-    static withRules(rules) {
-        return new ScoreCalculator(rules);
-    }
-}
-
-
 function scoring(...args) {
     return _.chain(args)
             .countBy()
             .entries()
-            .map(([number, count]) => ScoreCalculator.withRules(scoringRules).calculate(number, count))
+            .map(([number, count]) => ScoringRules[number].calculate(number, count))
             .sum()
             .value();
 
