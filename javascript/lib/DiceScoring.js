@@ -1,37 +1,48 @@
 const _ = require('lodash');
 
-const scoringRules = {
-    '1': {
-        threeTimes: number => 1000,
-        singleTimes: number => 100
-    },
-    '5': {
-        threeTimes: number => 500,
-        singleTimes: number => 50
-    },
-    'other': {
-        threeTimes: number => number * 100,
-        singleTimes: number => 0
+class Rule {
+    constructor(singleTime, threeTimes) {
+        this.singleTime = singleTime;
+        this.threeTimes = threeTimes;
     }
+}
+
+const ruleOf1 = new Rule(number => 100, number => 1000);
+const ruleOf5 = new Rule(number => 50, number => 500);
+const ruleOfOther = new Rule(number => 0, number => number * 100);
+
+const scoringRules = {
+    '1': ruleOf1,
+    '5': ruleOf5,
+    '2': ruleOfOther,
+    '3': ruleOfOther,
+    '4': ruleOfOther,
+    '6': ruleOfOther,
 };
+
+class ScoreCalculator {
+    constructor(rules) {
+        this.rules = rules;
+    }
+
+    calculate(number, count) {
+        const rule = this.rules[number];
+        if (count < 3) {
+            return count * rule.singleTime(number);
+        } else {
+            return rule.threeTimes(number) + this.calculate(number, count - 3);
+        }
+    }
+}
+
 
 function scoring(...args) {
     return _.chain(args)
             .countBy()
             .entries()
-            .map(([number, count]) => calculateTimes(number, count))
+            .map(([number, count]) => new ScoreCalculator(scoringRules).calculate(number, count))
             .sum()
             .value();
 
 }
-
-function calculateTimes(number, count) {
-    let rule = scoringRules[number] || scoringRules['other'];
-    if (count < 3) {
-        return count * rule.singleTimes(number);
-    } else {
-        return parseInt(count / 3) * rule.threeTimes(number) + count % 3 * rule.singleTimes(number);
-    }
-}
-
 module.exports = scoring;
