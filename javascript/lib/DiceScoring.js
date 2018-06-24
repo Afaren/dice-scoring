@@ -7,9 +7,9 @@ class Rule {
     }
 }
 
-const ruleOf1 = new Rule(number => 100, number => 1000);
-const ruleOf5 = new Rule(number => 50, number => 500);
-const ruleOfOther = new Rule(number => 0, number => number * 100);
+const ruleOf1 = new Rule(100, number => 1000);
+const ruleOf5 = new Rule(50, number => 500);
+const ruleOfOther = new Rule(0, number => number * 100);
 
 const scoringRules = {
     '1': ruleOf1,
@@ -28,7 +28,7 @@ class ScoreCalculator {
     calculate(number, count) {
         const rule = this.rules[number];
         if (count < 3) {
-            return count * rule.singleTime(number);
+            return count * rule.singleTime;
         } else {
             return rule.threeTimes(number) + this.calculate(number, count - 3);
         }
