@@ -21,24 +21,25 @@ function scoring() {
 function calculateScore(numberCountMap) {
   const result = {};
   Object.keys(numberCountMap).forEach(number => {
+    let count = numberCountMap[number];
     switch (number) {
       case '1':
-        if (!(numberCountMap[number] < 3)) {
-          result[number] = parseInt(numberCountMap[number] / 3) * 1000 + numberCountMap[number] % 3 * 100;
+        if (!(count < 3)) {
+          result[number] = parseInt(count / 3) * 1000 + count % 3 * 100;
         } else {
-          result[number] = numberCountMap[number] * 100
+          result[number] = count * 100
         }
         break;
       case '5':
-        if (!(numberCountMap[number] < 3)) {
-          result[number] = parseInt(numberCountMap[number] / 3) * 100 * number + numberCountMap[number] % 3 * 50
+        if (!(count < 3)) {
+          result[number] = parseInt(count / 3) * 100 * number + count % 3 * 50
         } else {
-          result[number] = numberCountMap[number] * 50;
+          result[number] = count * 50;
         }
         break;
       default:
-        if (!(numberCountMap[number] < 3)) {
-          result[number] = parseInt(numberCountMap[number] / 3) * 100 * number;
+        if (!(count < 3)) {
+          result[number] = parseInt(count / 3) * 100 * number;
         } else {
           result[number] = 0;
         }
