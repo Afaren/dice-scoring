@@ -16,9 +16,12 @@ const scoringRules = {
 };
 
 function scoring(...args) {
-    return _.entries(_.countBy(args))
+    return _.chain(args)
+            .countBy()
+            .entries()
             .map(([number, count]) => calculateTimes(number, count))
-            .reduce((acc, cur) => acc + cur, 0);
+            .sum()
+            .value();
 }
 
 function calculateTimes(number, count) {
