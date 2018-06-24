@@ -1,26 +1,30 @@
 const _ = require('lodash');
 const Rule = require('./Rule');
 
-const ruleOf1 = new Rule(100, number => 1000);
-const ruleOf5 = new Rule(50, number => 500);
-const ruleOfOther = new Rule(0, number => number * 100);
+const ruleOf1 = new Rule(100, 1000);
+const ruleOf5 = new Rule(50, 500);
+const ruleOf2 = new Rule(0, 200);
+const ruleOf3 = new Rule(0, 300);
+const ruleOf4 = new Rule(0, 400);
+const ruleOf6 = new Rule(0, 600);
 
 const ScoringRules = {
     '1': ruleOf1,
     '5': ruleOf5,
-    '2': ruleOfOther,
-    '3': ruleOfOther,
-    '4': ruleOfOther,
-    '6': ruleOfOther,
+    '2': ruleOf2,
+    '3': ruleOf3,
+    '4': ruleOf4,
+    '6': ruleOf6,
 };
 
 function scoring(...args) {
     return _.chain(args)
             .countBy()
             .entries()
-            .map(([number, count]) => ScoringRules[number].calculate(number, count))
+            .map(([number, count]) => ScoringRules[number].calculate(count))
             .sum()
             .value();
 
 }
+
 module.exports = scoring;

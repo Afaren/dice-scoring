@@ -4,11 +4,11 @@ module.exports = class Rule {
         this.threeTimesScore = threeTimes;
     }
 
-    calculate(number, count) {
+    calculate(count) {
         if (count < 3) {
             return count * this.singleTimeScore;
         } else {
-            return this.threeTimesScore(number) + this.calculate(number, count - 3);
+            return this.threeTimesScore + this.calculate(count - 3);
         }
     }
 
