@@ -1,6 +1,5 @@
 function scoring(...arrs) {
   let numObj = {};
-  let score = 0;
   arrs.forEach(num => {
     if (numObj[num]) {
       numObj[num] += 1;
@@ -11,9 +10,8 @@ function scoring(...arrs) {
 
   const result = calculateScore(numObj);
 
-  Object.keys(result).forEach(item => score += result[item]);
-  return score;
-
+  return Object.values(result)
+               .reduce((acc, cur) => acc + cur, 0);
 }
 
 
