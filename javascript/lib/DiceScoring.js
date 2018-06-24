@@ -1,7 +1,6 @@
-function scoring() {
+function scoring(...arrs) {
   let numObj = {};
   let score = 0;
-  let arrs = Array.prototype.slice.call(arguments);
   arrs.forEach(num => {
     if (numObj[num]) {
       numObj[num] += 1;
