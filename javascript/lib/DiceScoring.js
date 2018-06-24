@@ -20,27 +20,27 @@ function scoring() {
 
 function calculateScore(numObj) {
   const result = {};
-  Object.keys(numObj).forEach(value => {
-    switch (value) {
+  Object.keys(numObj).forEach(number => {
+    switch (number) {
       case '1':
-        if (!(numObj[value] < 3)) {
-          result[value] = parseInt(numObj[value] / 3) * 1000 + numObj[value] % 3 * 100;
+        if (!(numObj[number] < 3)) {
+          result[number] = parseInt(numObj[number] / 3) * 1000 + numObj[number] % 3 * 100;
         } else {
-          result[value] = numObj[value] * 100
+          result[number] = numObj[number] * 100
         }
         break;
       case '5':
-        if (!(numObj[value] < 3)) {
-          result[value] = parseInt(numObj[value] / 3) * 100 * value + numObj[value] % 3 * 50
+        if (!(numObj[number] < 3)) {
+          result[number] = parseInt(numObj[number] / 3) * 100 * number + numObj[number] % 3 * 50
         } else {
-          result[value] = numObj[value] * 50;
+          result[number] = numObj[number] * 50;
         }
         break;
       default:
-        if (!(numObj[value] < 3)) {
-          result[value] = parseInt(numObj[value] / 3) * 100 * value;
+        if (!(numObj[number] < 3)) {
+          result[number] = parseInt(numObj[number] / 3) * 100 * number;
         } else {
-          result[value] = 0;
+          result[number] = 0;
         }
         break;
     }
