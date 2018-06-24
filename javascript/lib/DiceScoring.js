@@ -8,7 +8,7 @@ function scoring(...args) {
 
   const result = calculateScore(numberCountMap);
 
-  return Object.values(result)
+  return _.values(result)
                .reduce((acc, cur) => acc + cur, 0);
 }
 
