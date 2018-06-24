@@ -1,6 +1,6 @@
-function scoring(...arrs) {
+function scoring(...args) {
   let numObj = {};
-  arrs.forEach(num => {
+  args.forEach(num => {
     if (numObj[num]) {
       numObj[num] += 1;
     } else {
