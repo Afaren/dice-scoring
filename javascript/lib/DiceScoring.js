@@ -21,20 +21,14 @@ function scoring(...args) {
         return acc;
     }, {});
 
-    const result = calculateScore(numberCountMap);
-
-    return _.values(result)
-            .reduce((acc, cur) => acc + cur, 0);
+    return calculateScore(numberCountMap)
+        .reduce((acc, cur) => acc + cur, 0);
 }
 
 
 function calculateScore(numberCountMap) {
-    const result = {};
-    _.entries(numberCountMap)
-     .forEach(([number, count]) => {
-         result[number] = calculateTimes(number, count);
-     });
-    return result;
+    return _.entries(numberCountMap)
+            .map(([number, count]) => calculateTimes(number, count));
 }
 
 function calculateTimes(number, count) {
