@@ -2,16 +2,16 @@ const _ = require('lodash');
 
 const rule = {
     '1': {
-        threeRatio: 1000,
-        singleRatio: 100
+        threeRatio: number => 1000,
+        singleRatio: number => 100
     },
     '5': {
-        threeRatio: 500,
-        singleRatio: 50
+        threeRatio: number => 500,
+        singleRatio: number => 50
     },
     'other': {
-        threeRatio: 100,
-        singleRatio: 0
+        threeRatio: number => number * 100,
+        singleRatio: number => 0
     }
 };
 
@@ -38,12 +38,11 @@ function calculateScore(numberCountMap) {
 }
 
 function calculateRatio(number, count) {
-    rule['other'].threeRatio = 100 * number;
     let calculateRule = rule[number] || rule['other'];
     if (!(count < 3)) {
-        return parseInt(count / 3) * calculateRule.threeRatio + count % 3 * calculateRule.singleRatio;
+        return parseInt(count / 3) * calculateRule.threeRatio(number) + count % 3 * calculateRule.singleRatio(number);
     } else {
-        return count * calculateRule.singleRatio;
+        return count * calculateRule.singleRatio(number);
     }
 }
 
