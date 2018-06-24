@@ -33,6 +33,10 @@ class ScoreCalculator {
             return rule.threeTimes(number) + this.calculate(number, count - 3);
         }
     }
+
+    static withRules(rules) {
+        return new ScoreCalculator(rules);
+    }
 }
 
 
@@ -40,7 +44,7 @@ function scoring(...args) {
     return _.chain(args)
             .countBy()
             .entries()
-            .map(([number, count]) => new ScoreCalculator(scoringRules).calculate(number, count))
+            .map(([number, count]) => ScoreCalculator.withRules(scoringRules).calculate(number, count))
             .sum()
             .value();
 
