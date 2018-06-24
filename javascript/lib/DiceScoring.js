@@ -1,6 +1,6 @@
 const _ = require('lodash');
 
-const rules = {
+const scoringRules = {
     '1': {
         threeTimes: number => 1000,
         singleTimes: number => 100
@@ -38,7 +38,7 @@ function calculateScore(numberCountMap) {
 }
 
 function calculateTimes(number, count) {
-    let calculateRule = rules[number] || rules['other'];
+    let calculateRule = scoringRules[number] || scoringRules['other'];
     if (count < 3) {
         return count * calculateRule.singleTimes(number);
     } else {
