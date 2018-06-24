@@ -38,11 +38,11 @@ function calculateScore(numberCountMap) {
 }
 
 function calculateTimes(number, count) {
-    let calculateRule = scoringRules[number] || scoringRules['other'];
+    let rule = scoringRules[number] || scoringRules['other'];
     if (count < 3) {
-        return count * calculateRule.singleTimes(number);
+        return count * rule.singleTimes(number);
     } else {
-        return parseInt(count / 3) * calculateRule.threeTimes(number) + count % 3 * calculateRule.singleTimes(number);
+        return parseInt(count / 3) * rule.threeTimes(number) + count % 3 * rule.singleTimes(number);
     }
 }
 
