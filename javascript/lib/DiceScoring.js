@@ -2,8 +2,8 @@ const _ = require('lodash');
 
 class Rule {
     constructor(singleTime, threeTimes) {
-        this.singleTime = singleTime;
-        this.threeTimes = threeTimes;
+        this.singleTimeScore = singleTime;
+        this.threeTimesScore = threeTimes;
     }
 }
 
@@ -28,9 +28,9 @@ class ScoreCalculator {
     calculate(number, count) {
         const rule = this.rules[number];
         if (count < 3) {
-            return count * rule.singleTime;
+            return count * rule.singleTimeScore;
         } else {
-            return rule.threeTimes(number) + this.calculate(number, count - 3);
+            return rule.threeTimesScore(number) + this.calculate(number, count - 3);
         }
     }
 
