@@ -10,36 +10,42 @@ function scoring() {
     }
   });
 
+  const result = calculateScore(numObj);
+
+  Object.keys(result).forEach(item => score += result[item]);
+  return score;
+
+}
+
+
+function calculateScore(numObj) {
+  const result = {};
   Object.keys(numObj).forEach(value => {
     switch (value) {
       case '1':
         if (!(numObj[value] < 3)) {
-          numObj[value] = parseInt(numObj[value] / 3) * 1000 + numObj[value] % 3 * 100;
+          result[value] = parseInt(numObj[value] / 3) * 1000 + numObj[value] % 3 * 100;
         } else {
-          numObj[value] = numObj[value] * 100
+          result[value] = numObj[value] * 100
         }
         break;
       case '5':
-        if (!(numObj[value] < 3 )) {
-          numObj[value] = parseInt(numObj[value] / 3) * 100 * value + numObj[value] % 3 * 50
+        if (!(numObj[value] < 3)) {
+          result[value] = parseInt(numObj[value] / 3) * 100 * value + numObj[value] % 3 * 50
         } else {
-          numObj[value] = numObj[value] * 50;
+          result[value] = numObj[value] * 50;
         }
         break;
       default:
         if (!(numObj[value] < 3)) {
-          numObj[value] = parseInt(numObj[value] / 3) * 100 * value;
+          result[value] = parseInt(numObj[value] / 3) * 100 * value;
         } else {
-
-          numObj[value] = 0;
+          result[value] = 0;
         }
         break;
     }
   });
-
-  Object.keys(numObj).forEach(item => score += numObj[item]);
-  return score;
-
+  return result;
 }
 
 module.exports = scoring;
