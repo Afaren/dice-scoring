@@ -21,14 +21,9 @@ function scoring(...args) {
         return acc;
     }, {});
 
-    return calculateScore(numberCountMap)
-        .reduce((acc, cur) => acc + cur, 0);
-}
-
-
-function calculateScore(numberCountMap) {
     return _.entries(numberCountMap)
-            .map(([number, count]) => calculateTimes(number, count));
+            .map(([number, count]) => calculateTimes(number, count))
+            .reduce((acc, cur) => acc + cur, 0);
 }
 
 function calculateTimes(number, count) {
