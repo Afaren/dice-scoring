@@ -39,10 +39,10 @@ function calculateScore(numberCountMap) {
 
 function calculateTimes(number, count) {
     let calculateRule = rule[number] || rule['other'];
-    if (!(count < 3)) {
-        return parseInt(count / 3) * calculateRule.threeTimes(number) + count % 3 * calculateRule.singleTimes(number);
-    } else {
+    if (count < 3) {
         return count * calculateRule.singleTimes(number);
+    } else {
+        return parseInt(count / 3) * calculateRule.threeTimes(number) + count % 3 * calculateRule.singleTimes(number);
     }
 }
 
