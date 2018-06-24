@@ -1,0 +1,27 @@
+{
+  "name": "dice-scoring",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Afaren/dice-scoring.git"
+  },
+  "keywords": [
+    "dice",
+    "scoring",
+    "javascript"
+  ],
+  "author": "Afaren",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Afaren/dice-scoring/issues"
+  },
+  "homepage": "https://github.com/Afaren/dice-scoring#readme",
+  "devDependencies": {
+    "jasmine": "^3.1.0"
+  }
+}
