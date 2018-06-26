@@ -16,27 +16,15 @@ public class Scoring {
 
     private static long calculate(Integer number, Long count) {
         if (number == 1) {
-            return one(count);
+            return new Rule(100, 1000).calculate(count);
         }
         if (number == 5) {
-            return five(count);
+            return new Rule(50, 500).calculate(count);
         }
         if (number == 2 || number == 3 || number == 4 || number == 6) {
-            return other(number, count);
+            return new Rule(0, number * 100).calculate(count);
         }
         return 0L;
-    }
-
-    private static long other(Integer number, long length) {
-        return new Rule(0, number * 100).calculate(length);
-    }
-
-    private static long five(long length) {
-        return new Rule(50, 500).calculate(length);
-    }
-
-    private static long one(long length) {
-        return new Rule(100, 1000).calculate(length);
     }
 
 
