@@ -28,23 +28,33 @@ public class Scoring {
     }
 
     private static long other(Integer number, long length) {
-        if (length < 3) {
-            return 0L;
-        }
-        return number * 100 + other(number, length - 3);
+        return new Rule(0, number * 100).calculate(length);
     }
 
     private static long five(long length) {
-        if (length < 3) {
-            return 50 * length;
-        }
-        return 500 + five(length - 3);
+        return new Rule(50, 500).calculate(length);
     }
 
     private static long one(long length) {
-        if (length < 3) {
-            return 100 * length;
+        return new Rule(100, 1000).calculate(length);
+    }
+
+
+    static class Rule{
+        private final int singleTimeScoring;
+        private final int threeTimesScoring;
+
+        Rule(int singleTimeScoring, int threeTimesScoring) {
+            this.singleTimeScoring = singleTimeScoring;
+            this.threeTimesScoring = threeTimesScoring;
         }
-        return 1000 + one(length - 3);
+
+
+        long calculate(long count) {
+            if (count < 3) {
+                return singleTimeScoring * count;
+            }
+            return  threeTimesScoring + calculate(count - 3);
+        }
     }
 }
