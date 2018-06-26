@@ -10,12 +10,8 @@ public class Scoring {
                      .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
                      .entrySet()
                      .stream()
-                     .mapToLong(x -> calculate(x.getKey(), x.getValue()))
+                     .mapToLong(x -> RuleFactory.create(x.getKey()).calculate(x.getValue()))
                      .sum();
-    }
-
-    private static long calculate(Integer number, Long count) {
-       return RuleFactory.create(number).calculate(count);
     }
 
 
