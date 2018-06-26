@@ -15,16 +15,7 @@ public class Scoring {
     }
 
     private static long calculate(Integer number, Long count) {
-        if (number == 1) {
-            return new Rule(100, 1000).calculate(count);
-        }
-        if (number == 5) {
-            return new Rule(50, 500).calculate(count);
-        }
-        if (number == 2 || number == 3 || number == 4 || number == 6) {
-            return new Rule(0, number * 100).calculate(count);
-        }
-        return 0L;
+       return RuleFactory.create(number).calculate(count);
     }
 
 
@@ -43,6 +34,21 @@ public class Scoring {
                 return singleTimeScoring * count;
             }
             return threeTimesScoring + calculate(count - 3);
+        }
+    }
+
+    private static class RuleFactory {
+        public static Rule create(Integer number) {
+            if (number == 1) {
+                return new Rule(100, 1000);
+            }
+            if (number == 5) {
+                return new Rule(50, 500);
+            }
+            if (number == 2 || number == 3 || number == 4 || number == 6) {
+                return new Rule(0, number * 100);
+            }
+            throw new IllegalArgumentException("illegal number");
         }
     }
 }
