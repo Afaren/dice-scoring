@@ -28,7 +28,7 @@ public class Scoring {
     }
 
 
-    static class Rule{
+    static class Rule {
         private final int singleTimeScoring;
         private final int threeTimesScoring;
 
@@ -42,7 +42,7 @@ public class Scoring {
             if (count < 3) {
                 return singleTimeScoring * count;
             }
-            return  threeTimesScoring + calculate(count - 3);
+            return threeTimesScoring + calculate(count - 3);
         }
     }
 }
