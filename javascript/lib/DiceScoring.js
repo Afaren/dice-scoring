@@ -22,7 +22,7 @@ function validate(args) {
         return;
     }
     const illegalNumbers = _.filter(args, x => x < 1 || x > 6);
-    if (illegalNumbers.length > 0) {
+    if (!_.isEmpty(illegalNumbers)) {
         throw new Error(`number: [${illegalNumbers}] is illegal`);
     }
 }
