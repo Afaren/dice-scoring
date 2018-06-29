@@ -49,5 +49,18 @@ describe("DiceScoring", function () {
     expect(score(3, 3, 3, 2, 2, 2, 1, 1, 1)).toEqual(1500);
   });
 
+  it("should not throw when dice number is legal", function () {
+    expect(() => score(1)).not.toThrow();
+    expect(() => score(2)).not.toThrow();
+    expect(() => score(3)).not.toThrow();
+    expect(() => score(4)).not.toThrow();
+    expect(() => score(5)).not.toThrow();
+    expect(() => score(6)).not.toThrow();
+  });
+
+  it("should throw error when dice number is illegal", function () {
+    expect(() => score(0)).toThrow(new Error('number: [0] is illegal'));
+    expect(() => score(7)).toThrow(new Error('number: [7] is illegal'));
+  });
 
 });

@@ -17,7 +17,18 @@ const ScoringRules = {
     '6': ruleOf6,
 };
 
+function validate(args) {
+    if (_.isEmpty(args)) {
+        return;
+    }
+    const illegalNumbers = _.filter(args, x => x < 1 || x > 6);
+    if (illegalNumbers.length > 0) {
+        throw new Error(`number: [${illegalNumbers}] is illegal`);
+    }
+}
+
 function scoring(...args) {
+    validate(args);
     return _.chain(args)
             .countBy()
             .entries()
